@@ -1,0 +1,20 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.logo {
+  display: block;
+  transform: scale(0.5);
+}
+
+.reason {
+  font-size: 1em;
+  font-weight: 600;
+}
