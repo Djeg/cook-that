@@ -20,3 +20,7 @@ textarea {
   font-family: 'Roboto', 'sans-serif';
   color: var(--nickel);
 }
+
+.container {
+  margin: 0px 8px;
+}
