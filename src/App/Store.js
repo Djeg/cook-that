@@ -4,10 +4,6 @@ import createSagaMiddleware from '@redux-saga/core'
 import * as Eff from 'redux-saga/effects'
 import startSplashScreenEffect from './SplashScreen/SplashScreenEffect'
 
-function* rootSaga() {
-  yield Eff.fork(startSplashScreenEffect)
-}
-
 const sagaMiddleware = createSagaMiddleware()
 
 const store = configureStore({
@@ -16,6 +12,10 @@ const store = configureStore({
   },
   middleware: [sagaMiddleware],
 })
+
+function* rootSaga() {
+  yield Eff.fork(startSplashScreenEffect)
+}
 
 sagaMiddleware.run(rootSaga)
 

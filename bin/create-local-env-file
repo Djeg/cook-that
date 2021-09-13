@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+const fs = require('fs')
+
+console.log('Copy / past the .env.local file if not existing ...')
+
+if (!fs.existsSync(`${__dirname}/../.env.local`)) {
+  fs.copyFileSync(`${__dirname}/../.env`, `${__dirname}/../.env.local`)
+}
+
+console.log('done')
