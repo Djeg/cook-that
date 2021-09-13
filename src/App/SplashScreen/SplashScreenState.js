@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import * as R from 'ramda'
-import { makeReducer } from '../Util/Function'
+import { fredux } from '../Util/Function'
 
 const name = 'SplashScreen'
 
@@ -14,17 +14,17 @@ const slice = createSlice({
   name,
   initialState,
   reducers: {
-    activate: makeReducer(() => R.assoc('activated', true)),
+    activate: fredux(() => R.assoc('activated', true)),
 
-    desactivate: makeReducer(() => R.assoc('activated', false)),
+    desactivate: fredux(() => R.assoc('activated', false)),
 
-    toggleLoading: makeReducer(({ payload }) =>
+    toggleLoading: fredux(({ payload }) =>
       R.evolve({
         loading: value => (payload ? !!payload : !value),
       }),
     ),
 
-    changeReason: makeReducer(({ payload }) => R.assoc('reason', payload)),
+    changeReason: fredux(({ payload }) => R.assoc('reason', payload)),
   },
 })
 
