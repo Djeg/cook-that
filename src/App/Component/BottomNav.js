@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './BottomNav.module.css'
 import { ReactComponent as Logo } from '../SplashScreen/logo.svg'
 import * as R from 'ramda'
+import { Link } from 'react-router-dom'
 
 export const MENU = {
   HOME: 'home',
@@ -11,18 +12,27 @@ export const MENU = {
   PROFILE: 'user',
 }
 
+export const ROUTE = {
+  HOME: '/',
+  NEW_RECIPE: '/nouvelle-recette',
+  NONE: '/',
+  FAVORITES: '/mes-favories',
+  PROFILE: '/mon-profile',
+}
+
 export default ({ active = MENU.HOME }) => {
   let menuItems = R.pipe(
     R.toPairs(),
     R.map(([key, value]) => (
-      <div
+      <Link
+        to={ROUTE[key]}
         key={`menu-${key}`}
         className={`${styles.item}${
           active === value ? ` ${styles.active}` : ''
         }`}
       >
         {value === MENU.NONE ? <Logo /> : <i className={`fas fa-${value}`}></i>}
-      </div>
+      </Link>
     )),
   )(MENU)
 
