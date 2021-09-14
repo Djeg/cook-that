@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import Spinner from '../Component/Spinner'
-import styles from './LoginForm.module.css'
-import { auth } from '../Util/Firebase'
+import loginStyles from './LoginForm.module.css'
 import {
   useDispatch,
   logInUser,
   changeSignFrameStep,
   SIGN_FRAME_STEP,
 } from '../Context/StateContext'
+import { auth } from '../Util/Firebase'
 
-export default function LoginForm() {
+export default function Registration() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -18,36 +18,46 @@ export default function LoginForm() {
 
   const handleInputWith = fn => e => fn(e.target.value)
 
-  const changeToCreateAccount = () =>
-    dispatch(changeSignFrameStep(SIGN_FRAME_STEP.SUBSCRIBE))
-
-  const authenticate = async () => {
-    setLoading(true)
+  const createAccount = async () => {
     setError('')
+    setLoading(true)
 
     try {
-      const response = await auth.signInWithEmailAndPassword(email, password)
+      const response = await auth.createUserWithEmailAndPassword(
+        email,
+        password,
+      )
 
       const user = response.user
 
       dispatch(
         logInUser({
-          uuid: user.uid,
           email: user.email,
+          uuid: user.uid,
           username: user.displayName,
         }),
       )
       dispatch(changeSignFrameStep(SIGN_FRAME_STEP.WELCOME))
-    } catch (e) {
-      setError('Invalide email ou mot de passe')
       setLoading(false)
+    } catch (e) {
+      setLoading(false)
+
+      if (/weak-password/.test(e.code)) {
+        return setError('Votre mot de doit contenir au moins 6 caractères.')
+      }
+
+      if (/email-already-in-use/.test(e.code)) {
+        return setError('Un utilisateur avec cet email existe dèja')
+      }
+
+      setError('Une erreur est survenue veuillez réessayer plus tard')
     }
   }
 
   return (
     <>
-      <h3 className='text-centered'>Connexion</h3>
-      <div className={styles.container}>
+      <h3 className='text-centered'>Créer un compte</h3>
+      <div className={loginStyles.container}>
         <div className='form-control'>
           <label htmlFor='email'>Email :</label>
           <input type='email' onChange={handleInputWith(setEmail)} id='email' />
@@ -66,24 +76,14 @@ export default function LoginForm() {
           </div>
         )}
         <div
-          className={`form-control ${styles.submitButton} ${
-            loading && styles.loadingButton
+          className={`form-control ${loginStyles.submitButton} ${
+            loading && loginStyles.loadingButton
           }`}
         >
           {loading && <Spinner size='small' />}
           {!loading && (
-            <button className='btn' onClick={authenticate}>
-              Connexion
-            </button>
-          )}
-        </div>
-        <div className='form-control'>
-          {!loading && (
-            <button
-              className='btn btn-unframed'
-              onClick={changeToCreateAccount}
-            >
-              Créer un compte
+            <button className='btn' onClick={createAccount}>
+              S'inscrire
             </button>
           )}
         </div>

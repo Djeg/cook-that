@@ -15,7 +15,7 @@ export default function Welcome() {
 
   useEffect(() => {
     ;(async () => {
-      await delay(2000)
+      await delay(1500)
 
       dispatch(closeSignFrame())
     })()

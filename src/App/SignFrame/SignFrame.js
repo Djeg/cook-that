@@ -8,6 +8,7 @@ import {
 import styles from '../../SignFrame/SignFrame.module.css'
 import LoginForm from './LoginForm'
 import Welcome from './Welcome'
+import Registration from './Registration'
 
 export default ({ children }) => {
   const open = useStateSlice('signFrame.open')
@@ -40,7 +41,7 @@ const FrameContent = ({ step }) => {
     case SIGN_FRAME_STEP.LOGIN:
       return <LoginForm />
     case SIGN_FRAME_STEP.SUBSCRIBE:
-      return <h1>Subscribe</h1>
+      return <Registration />
     default:
       return <Welcome />
   }
