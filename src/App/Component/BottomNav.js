@@ -20,7 +20,7 @@ export const ROUTE = {
   PROFILE: '/mon-profile',
 }
 
-export default ({ active = MENU.HOME }) => {
+export default ({ active = MENU.FAVORITES }) => {
   let menuItems = R.pipe(
     R.toPairs(),
     R.map(([key, value]) => (
