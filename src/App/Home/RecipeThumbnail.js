@@ -33,8 +33,8 @@ export default ({
       <p className={styles.notes}>
         {Array(score)
           .fill(null)
-          .map(() => (
-            <i className='fas fa-star'></i>
+          .map((v, i) => (
+            <i key={`star-${i}-${id}`} className='fas fa-star'></i>
           ))}
       </p>
     </div>
