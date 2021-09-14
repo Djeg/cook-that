@@ -21,9 +21,9 @@ export const MENU_ROUTE = {
 }
 
 export const SIGN_FRAME_STEP = {
-  login: 'login',
-  subscribe: 'subscribe',
-  welcome: 'welcome',
+  LOGIN: 'login',
+  SUBSCRIBE: 'subscribe',
+  WELCOME: 'welcome',
 }
 
 export const STATE = {
@@ -32,9 +32,10 @@ export const STATE = {
   },
   signFrame: {
     open: false,
-    step: SIGN_FRAME_STEP.login,
+    step: SIGN_FRAME_STEP.LOGIN,
   },
   user: {
+    username: null,
     uuid: null,
     email: null,
     isConnected: false,
@@ -61,11 +62,18 @@ export const closeSignFrame = action({
   reducer: () => R.assoc('open', false),
 })
 
+export const changeSignFrameStep = action({
+  slice: 'signFrame',
+  name: 'changeStep',
+  reducer: ({ payload }) => R.assoc('step', payload),
+})
+
 export const logInUser = action({
   slice: 'user',
   name: 'logIn',
-  reducer: ({ payload: { uuid, email } }) =>
+  reducer: ({ payload: { uuid, email, username } }) =>
     R.pipe(
+      R.assoc('username', username),
       R.assoc('email', email),
       R.assoc('uuid', uuid),
       R.assoc('isConnected', true),
@@ -82,6 +90,7 @@ export const reducer = createRootReducer([
   changeMenu,
   openSignFrame,
   closeSignFrame,
+  changeSignFrameStep,
   logInUser,
   logOutUser,
 ])

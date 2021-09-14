@@ -1,0 +1,14 @@
+.container {
+  margin: 0px 10px;
+}
+
+.submitButton {
+  margin-top: 20px;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.loadingButton {
+  align-items: center;
+}

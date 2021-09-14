@@ -5,6 +5,7 @@
   --platinium: #ebeaeb;
   --nickel: #70716f;
   --green: #688649;
+  --blue: #438eb9;
   --gold: #fff280;
   --goldBlack: #b8ae57;
   --red: #c55252;
@@ -18,11 +19,79 @@ h5,
 h6,
 p,
 input,
-textarea {
+textarea,
+label,
+input,
+button {
   font-family: 'Roboto', 'sans-serif';
   color: var(--nickel);
 }
 
 .container {
   margin: 0px 8px;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px;
+}
+
+.form-control > * {
+  display: block;
+}
+
+.form-control label {
+  font-weight: bold;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.form-control input {
+  background-color: var(--white);
+  color: var(--nickel);
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px var(--nickel);
+}
+.form-control input:hover {
+  outline: none;
+  box-shadow: 0px 0px 4px var(--green);
+  border: 0;
+}
+.form-control .error {
+  text-align: center;
+  font-weight: bold;
+  color: var(--red);
+}
+
+.btn {
+  font-weight: bold;
+  text-decoration: none;
+  outline: none;
+  padding: 15px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0px 0px 4px var(--nickel);
+  background-color: var(--platinium);
+}
+.btn-green {
+  background-color: var(--green);
+  color: var(--white);
+}
+.btn-red {
+  background-color: var(--red);
+  color: var(--white);
+}
+.btn-unframed {
+  box-shadow: none;
+  background-color: transparent;
+  color: var(--blue);
+  font-size: 16px;
+}
+
+.text-centered {
+  text-align: center;
 }
