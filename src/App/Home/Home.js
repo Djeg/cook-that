@@ -2,7 +2,7 @@ import React from 'react'
 import Container from '../Component/Container'
 import RecipeThumbnail from '../Component/RecipeThumbnail'
 import styles from './Home.module.css'
-import { MENU, useActiveMenu } from '../Context/Menu'
+import { MENU, useActiveMenu } from '../Context/StateContext'
 import { useRecipes } from '../Util/Recipes'
 
 export default () => {
