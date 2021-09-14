@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 export const MENU = {
   HOME: 'home',
@@ -32,4 +32,20 @@ export const useMenu = () => {
   const [activeMenu, setActiveMenu] = useContext(MenuContext)
 
   return [activeMenu, setActiveMenu]
+}
+
+export const useActiveMenu = menu => {
+  const [activeMenu, setActiveMenu] = useContext(MenuContext)
+
+  useEffect(() => {
+    if (!Object.values(MENU).includes(menu)) {
+      console.error(`The menu ${menu} does not exists.`)
+
+      return
+    }
+
+    if (menu !== activeMenu) {
+      setActiveMenu(menu)
+    }
+  }, [])
 }

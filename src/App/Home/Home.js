@@ -1,24 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Container from '../Component/Container'
-import { firestore } from '../Util/Firebase'
-import RecipeThumbnail from './RecipeThumbnail'
+import RecipeThumbnail from '../Component/RecipeThumbnail'
 import styles from './Home.module.css'
+import { MENU, useActiveMenu } from '../Context/Menu'
+import { useRecipes } from '../Util/Recipes'
 
 export default () => {
-  const [recipes, setRecipes] = useState([])
+  useActiveMenu(MENU.HOME)
 
-  useEffect(() => {
-    ;(async () => {
-      const query = await firestore.collection('recipes').get()
-
-      const recipes = query.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-
-      setRecipes(recipes)
-    })()
-  }, [])
+  const { recipes } = useRecipes()
 
   return (
     <Container>

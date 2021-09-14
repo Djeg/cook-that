@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './SplashScreen.module.css'
 import { ReactComponent as Logo } from './logo.svg'
-import Spinner from '../Util/Spinner'
+import Spinner from '../Component/Spinner'
 import { delay } from '../Util/Function'
 
 export default ({ children }) => {
