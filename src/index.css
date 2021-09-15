@@ -85,11 +85,18 @@ button {
   background-color: var(--red);
   color: var(--white);
 }
+.btn-yellow {
+  background-color: var(--goldBlack);
+  color: var(--white);
+}
 .btn-unframed {
   box-shadow: none;
   background-color: transparent;
   color: var(--blue);
   font-size: 16px;
+}
+.mgv-10 {
+  margin: 10px 0px;
 }
 
 .text-centered {

@@ -1,0 +1,18 @@
+.ingredientContainer {
+  box-shadow: 0px 0px 4px var(--nickel);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.group {
+  display: flex;
+}
+
+.group > div:first-child {
+  margin-right: 15px;
+}
+
+.group .form-control {
+  flex-basis: 100%;
+}
