@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Spinner from '../Component/Spinner'
 import styles from './LoginForm.module.css'
 import { auth } from '../Util/Firebase'
+import firebase from 'firebase/app'
 import {
   useDispatch,
   logInUser,
@@ -26,6 +27,7 @@ export default function LoginForm() {
     setError('')
 
     try {
+      await auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
       const response = await auth.signInWithEmailAndPassword(email, password)
 
       const user = response.user
@@ -39,6 +41,7 @@ export default function LoginForm() {
       )
       dispatch(changeSignFrameStep(SIGN_FRAME_STEP.WELCOME))
     } catch (e) {
+      console.log(e)
       setError('Invalide email ou mot de passe')
       setLoading(false)
     }

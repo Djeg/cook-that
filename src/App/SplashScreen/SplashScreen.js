@@ -3,14 +3,30 @@ import styles from './SplashScreen.module.css'
 import { ReactComponent as Logo } from './logo.svg'
 import Spinner from '../Component/Spinner'
 import { delay } from '../Util/Function'
+import { auth } from '../Util/Firebase'
+import { useDispatch, logInUser } from '../Context/StateContext'
 
 export default ({ children }) => {
   const [reason, setReason] = useState('')
   const [activated, setActivated] = useState(true)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     ;(async () => {
       setReason('Récéption des produits frais ...')
+
+      // Try to retrieve the persisted user
+      auth.onAuthStateChanged(user => {
+        if (!user) return
+
+        dispatch(
+          logInUser({
+            email: user.email,
+            uuid: user.uid,
+            username: user.displayName,
+          }),
+        )
+      })
 
       await delay(1500)
 

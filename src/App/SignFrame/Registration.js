@@ -18,6 +18,9 @@ export default function Registration() {
 
   const handleInputWith = fn => e => fn(e.target.value)
 
+  const changeToLogin = () =>
+    dispatch(changeSignFrameStep(SIGN_FRAME_STEP.LOGIN))
+
   const createAccount = async () => {
     setError('')
     setLoading(true)
@@ -84,6 +87,13 @@ export default function Registration() {
           {!loading && (
             <button className='btn' onClick={createAccount}>
               S'inscrire
+            </button>
+          )}
+        </div>
+        <div className='form-control'>
+          {!loading && (
+            <button className='btn btn-unframed' onClick={changeToLogin}>
+              Se connécter
             </button>
           )}
         </div>
