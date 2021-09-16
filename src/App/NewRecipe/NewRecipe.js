@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Container from '../Component/Container'
 import PhotosUploader from '../Component/PhotosUploader'
 import Spinner from '../Component/Spinner'
+import { Redirect } from 'react-router-dom'
 import {
   useFormField,
   useInputChangeOn,
@@ -13,9 +14,11 @@ import IngredientPicker from './IngredientPicker'
 import StepPicker from './StepPicker'
 import { firestore, storage } from '../Util/Firebase'
 import uid from 'short-uuid'
-import { useStateSlice } from '../Context/StateContext'
+import { useStateSlice, useActiveMenu, MENU } from '../Context/StateContext'
 
 export default function NewRecipe() {
+  useActiveMenu(MENU.NEW_RECIPE)
+
   const {
     value: title,
     error: titleError,
@@ -47,6 +50,7 @@ export default function NewRecipe() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const user = useStateSlice('user')
+  const [recetteId, setRecetteId] = useState(null)
 
   const saveIngredient = async () => {
     setLoading(true)
@@ -83,6 +87,7 @@ export default function NewRecipe() {
       }
 
       setLoading(false)
+      setRecetteId(doc.id)
     } catch (e) {
       setError('oups ..')
       console.warn(e)
@@ -92,6 +97,7 @@ export default function NewRecipe() {
 
   return (
     <Container>
+      {recetteId && <Redirect to={`/recette/${recetteId}`} />}
       <h1>Créer une recette</h1>
       <div className='form-control'>
         <label htmlFor='title'>Nom de la recette :</label>

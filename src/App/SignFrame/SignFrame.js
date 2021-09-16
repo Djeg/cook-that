@@ -5,7 +5,7 @@ import {
   closeSignFrame,
   useDispatch,
 } from '../Context/StateContext'
-import styles from '../../SignFrame/SignFrame.module.css'
+import styles from './SignFrame.module.css'
 import LoginForm from './LoginForm'
 import Welcome from './Welcome'
 import Registration from './Registration'

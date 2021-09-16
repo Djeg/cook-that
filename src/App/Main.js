@@ -28,3 +28,7 @@ export default () => (
     </BrowserRouter>
   </React.StrictMode>
 )
+
+// DDD => Domain Driven Development
+
+// Archi -> Domain -> State
