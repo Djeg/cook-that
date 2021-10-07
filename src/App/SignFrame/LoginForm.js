@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Spinner from '../Component/Spinner'
+import Spinner from '../../Util/Component/Spinner'
 import styles from './LoginForm.module.css'
 import { auth } from '../Util/Firebase'
 import firebase from 'firebase/app'

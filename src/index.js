@@ -1,16 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'normalize.css'
-import './index.css'
+import './Util/root.css'
 import '@fortawesome/fontawesome-free'
 import '@fortawesome/fontawesome-free/css/all.css'
-import * as serviceWorkerRegistration from './serviceWorkerRegistration'
-import reportWebVitals from './reportWebVitals'
-import Main from './App/Main'
+import * as serviceWorkerRegistration from './Util/serviceWorkerRegistration'
+import reportWebVitals from './Util/reportWebVitals'
+import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Main />
+    <App />
   </React.StrictMode>,
   document.getElementById('root'),
 )

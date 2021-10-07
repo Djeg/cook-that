@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import SelectBox from '../Component/SelectBox'
+import SelectBox from '../../Util/Component/SelectBox'
 import styles from './IngredientPicker.module.css'
 
 const INGREDIENT_UNITS = {

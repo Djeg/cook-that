@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Spinner from '../Component/Spinner'
+import Spinner from '../../Util/Component/Spinner'
 import loginStyles from './LoginForm.module.css'
 import {
   useDispatch,

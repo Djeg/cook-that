@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Container from '../Component/Container'
-import PhotosUploader from '../Component/PhotosUploader'
-import Spinner from '../Component/Spinner'
+import Container from '../../Util/Component/Container'
+import PhotosUploader from '../../Util/Component/PhotosUploader'
+import Spinner from '../../Util/Component/Spinner'
 import { Redirect } from 'react-router-dom'
 import {
   useFormField,
