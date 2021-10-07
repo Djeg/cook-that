@@ -1,8 +1,9 @@
 import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import { createStore, Provider, Render } from 'reactivr'
 import * as SplashScreen from './SplashScreen/SplashScreen'
 import * as BottomNav from './BottomNav/BottomNav'
+import * as Home from './Home/Home'
 
 export default function App() {
   return (
@@ -10,11 +11,13 @@ export default function App() {
       <BrowserRouter>
         <Provider
           store={createStore({
-            modules: [SplashScreen, BottomNav],
+            modules: [SplashScreen, BottomNav, Home],
           })}
         >
           <Render state={SplashScreen}>
-            <h1>Bienvenue</h1>
+            <Route path='/' exact strict>
+              <Render state={Home} />
+            </Route>
             <Render state={BottomNav} />
           </Render>
         </Provider>

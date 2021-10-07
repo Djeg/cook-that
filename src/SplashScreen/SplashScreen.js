@@ -71,6 +71,9 @@ export const load = action(
   }),
 )
 
+/**
+ * Render a SplashScreen
+ */
 export const View = ({ reason, loading, children }) => {
   useLifecycleAction(load())
 

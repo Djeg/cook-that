@@ -58,7 +58,7 @@ export const View = ({ activeItem }) => {
           to={MENU_ROUTE[menu]}
           key={`menu-${menu}`}
           className={`${styles.item}${
-            activeItem === menu ? ` ${styles.active}` : ''
+            activeItem === ico ? ` ${styles.active}` : ''
           }`}
           onClick={e => console.log('todo')}
         >
