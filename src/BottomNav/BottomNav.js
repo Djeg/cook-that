@@ -1,9 +1,12 @@
 import { assoc } from 'ramda'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { action, reduce, when } from 'reactivr'
+import { action, reduce, useModule, when } from 'reactivr'
 import { ReactComponent as Logo } from '../SplashScreen/logo.svg'
 import styles from './BottomNav.module.css'
+import * as SplashScreen from '../SplashScreen/SplashScreen'
+import * as SignFrame from '../SignFrame/SignFrame'
+import { useDispatch } from 'reactivr/dist/src/react/hooks'
 
 /**
  * The name of the bottom nav module
@@ -51,6 +54,9 @@ export const changeMenuItem = action(
  * The view of this module
  */
 export const View = ({ activeItem }) => {
+  const { user } = useModule(SplashScreen)
+  const dispatch = useDispatch()
+
   return (
     <div className={styles.bottomNav}>
       {Object.entries(MENU_ITEM).map(([menu, ico]) => (
@@ -60,7 +66,12 @@ export const View = ({ activeItem }) => {
           className={`${styles.item}${
             activeItem === ico ? ` ${styles.active}` : ''
           }`}
-          onClick={e => console.log('todo')}
+          onClick={e => {
+            if (ico === MENU_ITEM.PROFILE && !user) {
+              e.preventDefault()
+              dispatch(SignFrame.toggle())
+            }
+          }}
         >
           {ico === MENU_ITEM.NONE ? (
             <Logo />

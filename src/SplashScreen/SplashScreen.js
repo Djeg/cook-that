@@ -5,6 +5,7 @@ import Spinner from '../Util/Component/Spinner'
 import { delay } from '../Util/Function'
 import { ReactComponent as Logo } from './logo.svg'
 import styles from './SplashScreen.module.css'
+import { auth } from '../Util/Firebase'
 
 /**
  * Name of this module
@@ -17,6 +18,7 @@ export const name = Symbol('SplashScreen')
 export const state = {
   reason: '',
   loading: true,
+  user: null,
 }
 
 /**
@@ -36,6 +38,11 @@ export const ready = action(
 )
 
 /**
+ * Set a user
+ */
+export const setUser = action(when('setUser'), reduce(assoc('user')))
+
+/**
  * Start to load the splash screen job
  */
 export const load = action(
@@ -43,18 +50,11 @@ export const load = action(
   produce(({ dispatch }) => async () => {
     dispatch(changeReason('Récéption des produits frais ...'))
 
-    // @TODO Try to retrieve the persisted user
-    // auth.onAuthStateChanged(user => {
-    //   if (!user) return
+    auth.onAuthStateChanged(user => {
+      if (!user) return
 
-    //   dispatch(
-    //     logInUser({
-    //       email: user.email,
-    //       uuid: user.uid,
-    //       username: user.displayName,
-    //     }),
-    //   )
-    // })
+      dispatch(setUser(user))
+    })
 
     await delay(1500)
 
