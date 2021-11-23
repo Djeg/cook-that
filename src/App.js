@@ -1,5 +1,6 @@
-import logo from './logo.svg'
 import './App.css'
+import React from 'react'
+import Titre from './Titre'
 
 /**
  * En react nous écrivons du HTML qui se nomme le **JSX**.
@@ -15,31 +16,25 @@ import './App.css'
  * L'objet qui contient toutes les props
  */
 
-const add = (x, y) => x + y
-
-function AfficherNote(props) {
-  return <li>Note : {props.note} / 20</li>
-}
-
-function Titre(props) {
-  return (
-    <h1>
-      Bonjour {props.name}, votre age {props.age} ans
-    </h1>
-  )
+function AfficherNote({ note }) {
+  return <li>Note : {note} / 20</li>
 }
 
 function App() {
-  const name = 'Rose Doe'
-  const notes = [12.5, 8, 17, 9]
+  const notes = [12.5, 19, 14, 9]
 
   return (
     <div>
-      <Titre name={name} age='14' />
+      <Titre name='John' age='30' plop='plip' id='test'>
+        <strong>
+          Bonjour <i className='fas fa-heart'></i>
+        </strong>
+        <em>les amis</em>
+      </Titre>
       <p>Ma première application react</p>
       <ul>
-        {notes.map(note => (
-          <AfficherNote note={note} />
+        {notes.map((note, index) => (
+          <AfficherNote key={`note-${index}`} note={note} />
         ))}
       </ul>
     </div>
