@@ -1,0 +1,114 @@
+.recipeThumb {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 184px;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.backgroundImage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  filter: blur(3px);
+}
+
+.firstLine,
+.secondLine,
+.thirdLine {
+  display: flex;
+  align-items: center;
+}
+
+.firstLine,
+.thirdLine {
+  justify-content: space-between;
+}
+
+.secondLine {
+  justify-content: flex-end;
+}
+
+.title,
+.duration,
+.level,
+.stars {
+  padding: 0.8rem 1rem;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+}
+
+.title,
+.level {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.duration,
+.stars {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.duration {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.title {
+  font-weight: 900;
+  font-size: 1.4rem;
+}
+
+.like {
+  text-align: center;
+  padding: 1rem;
+  padding-right: 1.2rem;
+  font-size: 1.4rem;
+  color: var(--color-red);
+  cursor: pointer;
+}
+
+.level {
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+.easy {
+  color: var(--color-green);
+}
+.medium {
+  color: var(--color-gold-black);
+}
+.hard {
+  color: var(--color-red);
+}
+
+.backgroundImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stars {
+  display: flex;
+  gap: 0.3rem;
+}
+.stars i {
+  display: block;
+  color: var(--color-gold);
+}
+
+@media screen and (min-width: 768px) {
+  .recipeThumb {
+    max-width: 384px;
+    min-width: 200px;
+  }
+}

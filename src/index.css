@@ -3,6 +3,10 @@
 :root {
   --color-nickel: #70716f;
   --color-platinium: #ebeaeb;
+  --color-red: #c55252;
+  --color-green: rgba(104, 134, 73, 1);
+  --color-gold-black: #b8ae57;
+  --color-gold: #fff280;
 }
 
 body {
@@ -13,6 +17,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--color-nickel);
 }
 
 code {
