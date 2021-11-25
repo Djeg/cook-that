@@ -1,7 +1,37 @@
+import { useEffect, useState } from 'react'
+import { getDocs, collection } from 'firebase/firestore'
 import classes from './RecipeList.module.css'
 import RecipeThumb from './RecipeThumb'
+import { db } from './firebase'
 
 export default function RecipeList() {
+  const [recipeList, setRecipeList] = useState([])
+
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      const snapshot = await getDocs(collection(db, 'recipes'))
+
+      const recipes = snapshot.docs.map(document => {
+        return {
+          id: document.id,
+          ...document.data(),
+        }
+      })
+
+      setRecipeList(recipes)
+    }
+
+    fetchRecipes()
+  }, [])
+
+  if (recipeList.length === 0) {
+    return (
+      <div className={classes.recipeList}>
+        <p>Chargement des recettes ...</p>
+      </div>
+    )
+  }
+
   return (
     <div className={classes.recipeList}>
       <RecipeThumb

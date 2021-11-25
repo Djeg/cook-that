@@ -2,7 +2,7 @@ import classes from './BottomNav.module.css'
 import { ReactComponent as Logo } from './logo.svg'
 import { Link } from 'react-router-dom'
 
-export default function BottomNav({ active = 'home' }) {
+export default function BottomNav({ active = 'home', onMenuChange }) {
   return (
     <nav className={classes.nav}>
       <ul className={classes.menu}>
@@ -11,7 +11,7 @@ export default function BottomNav({ active = 'home' }) {
             active === 'home' ? classes.active : null
           }`}
         >
-          <Link to='/'>
+          <Link to='/' onClick={() => onMenuChange('home')}>
             <i className='fas fa-home'></i>
           </Link>
         </li>
@@ -20,12 +20,16 @@ export default function BottomNav({ active = 'home' }) {
             active === 'plus' ? classes.active : null
           }`}
         >
-          <Link to='/ajouter-une-recette'>
+          <Link to='/ajouter-une-recette' onClick={() => onMenuChange('plus')}>
             <i className='fas fa-plus-square'></i>
           </Link>
         </li>
         <li className={classes.item}>
-          <a href='#' className={classes.logo}>
+          <a
+            href='#'
+            className={classes.logo}
+            onClick={() => onMenuChange('home')}
+          >
             <Logo />
           </a>
         </li>
@@ -34,7 +38,7 @@ export default function BottomNav({ active = 'home' }) {
             active === 'heart' ? classes.active : null
           }`}
         >
-          <a href='#'>
+          <a href='#' onClick={() => onMenuChange('heart')}>
             <i className='fas fa-heart'></i>
           </a>
         </li>
@@ -43,7 +47,7 @@ export default function BottomNav({ active = 'home' }) {
             active === 'user' ? classes.active : null
           }`}
         >
-          <a href='#'>
+          <a href='#' onClick={() => onMenuChange('user')}>
             <i className='fas fa-user'></i>
           </a>
         </li>

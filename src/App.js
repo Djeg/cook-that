@@ -1,15 +1,19 @@
 import './App.css'
-import React from 'react'
+import React, { useState } from 'react'
 import BottomNav from './BottomNav'
 import Content from './Content'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Counter from './Counter'
 import RecipeList from './RecipeList'
+import AddRecipe from './AddRecipe'
 
 function App() {
+  const [activeMenu, setActiveMenu] = useState('home')
+
   return (
     <BrowserRouter>
       <div>
-        <BottomNav active='home' />
+        <BottomNav active={activeMenu} onMenuChange={setActiveMenu} />
         <Routes>
           <Route
             path='/'
@@ -23,7 +27,15 @@ function App() {
             path='/ajouter-une-recette'
             element={
               <Content title='Ajouter une recette'>
-                <p>coucou</p>
+                <AddRecipe />
+              </Content>
+            }
+          />
+          <Route
+            path='/conteur'
+            element={
+              <Content title='Super conteur'>
+                <Counter />
               </Content>
             }
           />
